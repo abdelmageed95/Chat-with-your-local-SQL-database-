@@ -25,3 +25,6 @@ This project implements a Retrieval-Augmented Generation (RAG) pipeline as a Fas
 4. Run the app
    ```bash
    uvicorn api:app --host 0.0.0.0 --port 8000 --reload
+
+
+![alt text](static/img/image.png)

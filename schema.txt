@@ -1,0 +1,73 @@
+Table: categories
+Columns:
+  - category_id: INTEGER (Nullable: False)
+  - name: VARCHAR(50) (Nullable: False)
+  - description: TEXT (Nullable: True)
+  - parent_category_id: INTEGER (Nullable: True)
+  - is_active: BOOLEAN (Nullable: True)
+  - created_at: TIMESTAMP (Nullable: True)
+Primary Keys: ['category_id']
+Foreign Keys:
+  - ['parent_category_id'] -> categories.['category_id']
+Indexes:
+
+Table: products
+Columns:
+  - product_id: INTEGER (Nullable: False)
+  - name: VARCHAR(100) (Nullable: False)
+  - description: TEXT (Nullable: True)
+  - price: NUMERIC(10, 2) (Nullable: False)
+  - stock_quantity: INTEGER (Nullable: False)
+  - category_id: INTEGER (Nullable: True)
+Primary Keys: ['product_id']
+Foreign Keys:
+  - ['category_id'] -> categories.['category_id']
+Indexes:
+  - idx_products_category: ['category_id'] (Unique: False)
+
+Table: customers
+Columns:
+  - customer_id: INTEGER (Nullable: False)
+  - first_name: VARCHAR(50) (Nullable: False)
+  - last_name: VARCHAR(50) (Nullable: False)
+  - email: VARCHAR(100) (Nullable: False)
+  - phone: VARCHAR(20) (Nullable: True)
+  - created_at: TIMESTAMP (Nullable: True)
+  - last_purchase_date: DATE (Nullable: True)
+Primary Keys: ['customer_id']
+Foreign Keys:
+Indexes:
+  - customers_email_key: ['email'] (Unique: True)
+  - idx_customers_email: ['email'] (Unique: False)
+
+Table: orders
+Columns:
+  - order_id: INTEGER (Nullable: False)
+  - customer_id: INTEGER (Nullable: False)
+  - order_date: TIMESTAMP (Nullable: True)
+  - total_amount: NUMERIC(10, 2) (Nullable: False)
+  - status: VARCHAR(20) (Nullable: False)
+  - shipping_address: TEXT (Nullable: True)
+Primary Keys: ['order_id']
+Foreign Keys:
+  - ['customer_id'] -> customers.['customer_id']
+Indexes:
+  - idx_orders_customer_id: ['customer_id'] (Unique: False)
+  - idx_orders_date: ['order_date'] (Unique: False)
+
+Table: order_items
+Columns:
+  - order_item_id: INTEGER (Nullable: False)
+  - order_id: INTEGER (Nullable: False)
+  - product_id: INTEGER (Nullable: False)
+  - quantity: INTEGER (Nullable: False)
+  - unit_price: NUMERIC(10, 2) (Nullable: False)
+  - subtotal: NUMERIC(10, 2) (Nullable: False)
+Primary Keys: ['order_item_id']
+Foreign Keys:
+  - ['order_id'] -> orders.['order_id']
+  - ['product_id'] -> products.['product_id']
+Indexes:
+  - idx_order_items_order_id: ['order_id'] (Unique: False)
+  - idx_order_items_product_id: ['product_id'] (Unique: False)
+

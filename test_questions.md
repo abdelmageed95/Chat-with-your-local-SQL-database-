@@ -13,7 +13,7 @@ Which customers spent the most?
 
 **List products that are out of stock:**
 
-"Which products are currently out of stock?"
+"How products are currently out of stock?"
 
 **Find customers who haven't made any purchases:**
 

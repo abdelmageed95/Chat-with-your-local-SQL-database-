@@ -2,13 +2,13 @@
 
 This project implements a Retrieval-Augmented Generation (RAG) pipeline as a FastAPI endpoint, using PostgreSQL and LLaMA-3.2 via Ollama.
 
+![alt text](static/img/llm-sql.jpg)
 ## Prerequisites
 - Python 3.8+
 - PostgreSQL database (`Ecommerce` in this example)
 - Ollama installed and running with LLaMA-3.2 model (`llama3.2`)
 
 `ollama pull llama3.2`
-
 
 
 ## Installation

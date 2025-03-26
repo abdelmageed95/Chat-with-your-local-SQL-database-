@@ -12,6 +12,9 @@ HOST = os.getenv("POSTGRES_HOST")
 PORT = os.getenv("POSTGRES_PORT")
 DB_NAME = os.getenv("POSTGRES_DB")
 
+DATABASE_URL = f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
+SCHEMA_NAME = "public"
+
 def get_full_schema(database_url: str, schema_name: str = "public") -> str:
     """
     Retrieve the full schema of a PostgreSQL database as a formatted string.
@@ -65,17 +68,3 @@ def get_full_schema(database_url: str, schema_name: str = "public") -> str:
 
     except Exception as e:
         raise Exception(f"Failed to retrieve schema: {str(e)}")
-
-
-
-if __name__ == "__main__":
-    DATABASE_URL = f"postgresql+psycopg2://{USER}:{PASSWORD}@{HOST}:{PORT}/{DB_NAME}"
-    SCHEMA_NAME = "public"
-
-    try:
-        schema = get_full_schema(DATABASE_URL, SCHEMA_NAME)
-        with open("schema.txt", "w") as f:
-            f.write(schema)
-        print("Schema Generated")
-    except Exception as e:
-        print(f"Error: {str(e)}")

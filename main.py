@@ -5,6 +5,7 @@ from typing import Optional
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
+from schema_generator import DATABASE_URL
 
 # FastAPI app
 app = FastAPI(
@@ -14,7 +15,7 @@ app = FastAPI(
 )
 app.mount("/templates", StaticFiles(directory="templates"), name="templates")
 
-DATABASE_URL = "postgresql+psycopg2://postgres:280598@localhost:5432/Ecommerce"
+
 MODEL_NAME = "llama3.2"
 MAX_RETRIES = 10
 

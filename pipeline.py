@@ -108,9 +108,9 @@ class Pipeline:
                     f"answer the user's question in a clear, natural language, concise,and well-structured markdown format.\n"
                     f"Question: {question}\n"
                     "Don't include any SQL queries or any other technical details.\n"
-                    "do nt make a large font size i the markdown."
-                   
-                )
+                    "do nt make a large font size in the markdown./n"
+                    " do not make up answers that are not based on the provided information."
+                ),
             }
         ]
         response = ollama.chat(model=self.model_name, messages=response_prompt)
